@@ -1,4 +1,4 @@
-name: Deploy Static content to GitHub Pages
+name: Test Deploy Workflow
 
 on:
   push:
@@ -29,26 +29,3 @@ jobs:
         with:
           name: website
           path: build/site
-
-  deploy:
-    needs: build
-    environment:
-      name: github-pages
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: website
-          path: build/site
-
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: "build/site"
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v2
